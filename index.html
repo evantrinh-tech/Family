@@ -347,33 +347,6 @@
         }
 
 
-        /* Control Buttons */
-        .controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 100;
-        }
-
-        .control-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 25px;
-            padding: 10px 15px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .control-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
 
         /* Envelope */
         .envelope-container {
@@ -801,19 +774,6 @@
                 font-size: 0.9rem;
             }
             
-            .controls {
-                top: 10px;
-                right: 10px;
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .control-btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-                min-height: 44px;
-                min-width: 44px;
-            }
             
             .action-buttons {
                 flex-direction: column;
@@ -996,11 +956,6 @@
             transition: all 2s ease-in-out;
         }
 
-        .final-view .controls {
-            opacity: 0;
-            transform: translateY(-50px);
-            transition: all 2s ease-in-out;
-        }
 
         .final-view .music-visualizer {
             opacity: 0;
@@ -1132,15 +1087,6 @@
         🎵
     </div>
     
-    <!-- Control Buttons -->
-    <div class="controls">
-        <button class="control-btn" onclick="toggleMusic()" id="musicBtn">🎵 Bật nhạc</button>
-        <button class="control-btn" onclick="changeRecipient()">👤 Đổi tên</button>
-        <button class="control-btn" onclick="shareLink()">🔗 Chia sẻ</button>
-        <button class="control-btn" onclick="shareFacebook()">📘 Facebook</button>
-        <button class="control-btn" onclick="shareZalo()">💬 Zalo</button>
-        <button class="control-btn" onclick="downloadCard()">📸 Tải thiệp</button>
-    </div>
     
     <!-- Main Container -->
     <div class="container">
@@ -1295,11 +1241,6 @@
             document.getElementById('recipientName').textContent = `💌 Gửi: ${name}`;
         }
         
-        function changeRecipient() {
-            const currentName = localStorage.getItem('recipientName') || '';
-            document.getElementById('nameInput').value = currentName;
-            showNameModal();
-        }
         
         function openEnvelope() {
             if (isEnvelopeOpen) return;
@@ -1657,54 +1598,6 @@
         }
         
         
-        function downloadCard() {
-            const letter = document.getElementById('letter');
-            const actionButtons = document.getElementById('actionButtons');
-            
-            // Temporarily hide action buttons for clean screenshot
-            actionButtons.style.display = 'none';
-            
-            html2canvas(letter, {
-                backgroundColor: null,
-                scale: 2,
-                useCORS: true
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'thu-tinh-20-10.png';
-                link.href = canvas.toDataURL();
-                link.click();
-                
-                // Show action buttons again
-                actionButtons.style.display = 'flex';
-            });
-        }
-        
-        function shareLink() {
-            if (navigator.share) {
-                navigator.share({
-                    title: '💌 Thư tình 20/10',
-                    text: 'Gửi tặng em thiệp tình yêu đặc biệt nhân ngày 20/10',
-                    url: window.location.href
-                });
-            } else {
-                // Fallback: copy to clipboard
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('Đã copy link vào clipboard!');
-                });
-            }
-        }
-        
-        function shareFacebook() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent('💌 Thư tình 20/10 - Gửi tặng em thiệp tình yêu đặc biệt');
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
-        }
-        
-        function shareZalo() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent('💌 Thư tình 20/10 - Gửi tặng em thiệp tình yêu đặc biệt');
-            window.open(`https://zalo.me/share?url=${url}&title=${text}`, '_blank');
-        }
         
         // Close modals when clicking outside
         window.onclick = function(event) {
