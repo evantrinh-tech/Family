@@ -962,70 +962,6 @@
             font-weight: 500;
         }
 
-        /* Image Gallery Styles */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #ffe6f1, #ffc4de);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .gallery-image {
-            position: relative;
-            width: 100%;
-            height: 120px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            transform: translateZ(10px);
-        }
-
-        .gallery-image:hover {
-            transform: translateZ(20px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .gallery-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-image:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Responsive gallery */
-        @media (max-width: 768px) {
-            .image-gallery {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-                padding: 15px;
-            }
-            
-            .gallery-image {
-                height: 100px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .image-gallery {
-                grid-template-columns: 1fr;
-                gap: 8px;
-                padding: 10px;
-            }
-            
-            .gallery-image {
-                height: 80px;
-            }
-        }
-
         /* Final View Styles */
         .final-view .container {
             opacity: 0;
@@ -1087,11 +1023,11 @@
             50% { transform: scale(1.2); }
         }
 
-        /* Envelope Open Button */
+        /* Envelope Open Button - NEW SIMPLE VERSION */
         .envelope-open-btn {
-            position: absolute;
-            top: calc(50% + 60px);
-            right: -180px;
+            position: fixed;
+            top: calc(50% + 140px);
+            right: 60px;
             transform: translateY(-50%);
             background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 50%, #ffa8c5 100%);
             color: white;
@@ -1103,13 +1039,19 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
-            z-index: 20;
+            z-index: 9999;
             display: flex;
             align-items: center;
             gap: 8px;
             min-height: 45px;
             min-width: 160px;
             justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .envelope-open-btn:hover {
@@ -1131,6 +1073,8 @@
             font-size: 0.9rem;
         }
 
+        /* Simple clickable button - no complex pointer-events */
+
         /* Mobile responsive for envelope open button */
         @media (max-width: 768px) {
             .envelope-open-btn {
@@ -1138,15 +1082,17 @@
                 min-width: 140px;
                 padding: 10px 20px;
                 font-size: 0.9rem;
+                z-index: 9999;
             }
         }
 
         @media (max-width: 480px) {
             .envelope-open-btn {
-                right: 5px;
-                min-width: 270px;
+                right: 60px;
+                min-width: 30px;
                 padding: 8px 16px;
                 font-size: 0.8rem;
+                z-index: 9999;
             }
         }
     </style>
@@ -1191,12 +1137,12 @@
                 <div class="envelope-overlay" onclick="openEnvelope()" ontouchstart="openEnvelope()"></div>
                 
                 <!-- Open Letter Button -->
-                <button class="envelope-open-btn" onclick="openEnvelope()" ontouchstart="openEnvelope()">
+                <div class="envelope-open-btn" id="envelopeOpenBtn" onclick="openEnvelope()" ontouchstart="openEnvelope()">
                     <span class="btn-icon">💌</span>
                     <span class="btn-text">Mở lời chúc</span>
-                </button>
+                </div>
                 <div class="letter" id="letter">
-                    <div class="stage-indicator" id="stageIndicator">Phần 1/6</div>
+                    <div class="stage-indicator" id="stageIndicator">Phần 1/5</div>
                     <div class="letter-content" id="letterContent">
                         <div class="letter-stage" id="stage1">
                             <div class="letter-line">Gửi bà ngoại, mẹ yêu, các dì và mợ thân thương 🌸</div>
@@ -1205,38 +1151,19 @@
                             <div class="letter-line">Chúc những người phụ nữ tuyệt vời nhất của gia đình luôn rạng rỡ, xinh đẹp và tràn đầy yêu thương 💐</div>
                         </div>
                         <div class="letter-stage" id="stage3">
-                            <div class="letter-line">Cảm ơn vì đã luôn dành cho mọi người trong gia đình tất cả tình yêu, sự hi sinh và những điều tốt đẹp nhất ❤️</div>
+                            <div class="letter-line">Cảm ơn vì đã luôn yêu thương và quan tâm hết lòng mọi người trong gia đình ❤️</div>
                         </div>
                         <div class="letter-stage" id="stage4">
                             <div class="letter-line">Chúc mọi người thật nhiều sức khỏe, niềm vui và bình an – không chỉ hôm nay mà suốt cả cuộc đời 🌷</div>
                         </div>
                         <div class="letter-stage" id="stage5">
                             <div class="letter-line">Chúc mừng Ngày Phụ nữ Việt Nam 20/10 💞</div>
-                        </div>
-                        <div class="letter-stage" id="stage6">
-                            <div class="letter-line">Những khoảnh khắc đẹp nhất 💕</div>
-                            <div class="image-gallery">
-                                <div class="gallery-image" id="galleryImage1">
-                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 1">
+                            <div class="letter-image-container">
+                                <div class="image-placeholder" onclick="uploadImage()" id="imagePlaceholder" style="display: none;">
+                                    📸
                                 </div>
-                                <div class="gallery-image" id="galleryImage2">
-                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 2">
-                                </div>
-                                <div class="gallery-image" id="galleryImage3">
-                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 3">
-                                </div>
-                                <div class="gallery-image" id="galleryImage4">
-                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 4">
-                                </div>
-                                <div class="gallery-image" id="galleryImage5">
-                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 5">
-                                </div>
-                                <div class="gallery-image" id="galleryImage6">
-                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 6">
-                                </div>
-                                <div class="gallery-image" id="galleryImage7">
-                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 7">
-                                </div>
+                                <div class="image-upload-text" id="imageUploadText" style="display: none;">Click để thêm ảnh</div>
+                                <img class="letter-image" id="letterImage" src="love-letter/123.jpg" alt="Hình ảnh tình yêu">
                             </div>
                         </div>
                     </div>
@@ -1268,7 +1195,7 @@
     <!-- Final Message -->
     <div class="final-message" id="finalMessage">
         <h1>Bà ngoại, mẹ béo, các dì và mợ</h1>
-        <p>Chúc các cô ngày 20/10 thật hạnh phúc!</p>
+        <p>Chúc mọi người ngày 20/10 thật hạnh phúc!</p>
         <div class="heart">💕</div>
     </div>
     
@@ -1285,7 +1212,7 @@
         let musicBtn = document.getElementById('musicBtn');
         let musicVisualizer = document.getElementById('musicVisualizer');
         
-        // Default letter content - divided into 6 stages
+        // Default letter content - divided into 5 stages
         const defaultLetterStages = [
     [
         "Gửi bà ngoại, mẹ yêu, các dì và mợ thân thương 🌸"
@@ -1294,16 +1221,13 @@
         "Chúc những người phụ nữ tuyệt vời nhất của gia đình luôn rạng rỡ, xinh đẹp và tràn đầy yêu thương 💐"
     ],
     [
-        "Cảm ơn vì đã luôn dành cho mọi người trong tất cả tình yêu, sự hi sinh và những điều tốt đẹp nhất ❤️"
+        "Cảm ơn vì đã luôn yêu thương và quan tâm hết lòng mọi người trong gia đình ❤️"
     ],
     [
         "Chúc mọi người thật nhiều sức khỏe, niềm vui và bình an – không chỉ hôm nay mà suốt cả cuộc đời 🌷"
     ],
     [
         "Con yêu và trân trọng tất cả. Chúc mừng Ngày Phụ nữ Việt Nam 20/10 💞"
-    ],
-    [
-        "Những khoảnh khắc đẹp nhất 💕"
     ]
 ];
 
@@ -1321,6 +1245,7 @@
             createParticles();
             loadSavedImage();
             setupMobileTouch();
+            setupEnvelopeButton();
             setInterval(createHearts, 2000);
             setInterval(createFlowers, 3000);
             setInterval(createParticles, 1000);
@@ -1422,10 +1347,10 @@
                 if (currentStage < totalStages - 1) {
                     fadeOutCurrentStage();
                 } else {
-                    // Last stage - start final view transition after 5 seconds (more time for gallery)
+                    // Last stage - start final view transition after 3 seconds
                     setTimeout(() => {
                         startFinalViewTransition();
-                    }, 5000);
+                    }, 3000);
                 }
             }, 2500);
         }
@@ -1573,39 +1498,13 @@
             const letterContent = document.getElementById('letterContent');
             let html = '';
             
-            // Always create exactly 6 stages
-            for (let i = 0; i < 6; i++) {
+            // Always create exactly 5 stages
+            for (let i = 0; i < 5; i++) {
                 html += `<div class="letter-stage" id="stage${i + 1}">`;
                 if (currentLetterStages[i]) {
                     currentLetterStages[i].forEach(line => {
                         html += `<div class="letter-line">${line}</div>`;
                     });
-                }
-                // Add gallery for stage 6
-                if (i === 5) {
-                    html += `<div class="image-gallery">
-                        <div class="gallery-image" id="galleryImage1">
-                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 1">
-                        </div>
-                        <div class="gallery-image" id="galleryImage2">
-                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 2">
-                        </div>
-                        <div class="gallery-image" id="galleryImage3">
-                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 3">
-                        </div>
-                        <div class="gallery-image" id="galleryImage4">
-                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 4">
-                        </div>
-                        <div class="gallery-image" id="galleryImage5">
-                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 5">
-                        </div>
-                        <div class="gallery-image" id="galleryImage6">
-                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 6">
-                        </div>
-                        <div class="gallery-image" id="galleryImage7">
-                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 7">
-                        </div>
-                    </div>`;
                 }
                 html += '</div>';
             }
@@ -1814,6 +1713,21 @@
             }
         }
 
+        function setupEnvelopeButton() {
+            // Button now uses simple onclick attribute - no complex setup needed
+            console.log('Button setup complete - USING SIMPLE ONCLICK');
+            
+            // Test function
+            window.testButton = function() {
+                console.log('Testing button...');
+                const btn = document.getElementById('envelopeOpenBtn');
+                if (btn) {
+                    console.log('Button found:', btn);
+                    btn.click();
+                }
+            };
+        }
+
         function setupMobileTouch() {
             const envelope = document.querySelector('.envelope');
             const envelopeBody = document.querySelector('.envelope-body');
@@ -1821,6 +1735,7 @@
             const envelopeText = document.querySelector('.envelope-text');
             const recipientName = document.querySelector('.recipient-name');
             const envelopeOverlay = document.querySelector('.envelope-overlay');
+            const envelopeOpenBtn = document.getElementById('envelopeOpenBtn');
             let touchStarted = false;
             
             // Debug function to check if events are working
@@ -1897,6 +1812,8 @@
             addEnvelopeEvents(recipientName);
             addEnvelopeEvents(envelopeOverlay);
             
+            // Button is now handled separately in setupEnvelopeButton()
+            
             // Additional simple click handler for DevTools compatibility
             envelope.addEventListener('click', function(e) {
                 console.log('Direct envelope click - DevTools mode');
@@ -1930,5 +1847,81 @@
         }
 
     </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 </html>
