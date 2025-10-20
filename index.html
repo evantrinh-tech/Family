@@ -1050,7 +1050,7 @@
         /* Envelope Open Button */
         .envelope-open-btn {
             position: absolute;
-            top: 50%;
+            top: calc(50% + 60px);
             right: -180px;
             transform: translateY(-50%);
             background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 50%, #ffa8c5 100%);
@@ -1103,8 +1103,8 @@
 
         @media (max-width: 480px) {
             .envelope-open-btn {
-                right: 10px;
-                min-width: 120px;
+                right: 5px;
+                min-width: 270px;
                 padding: 8px 16px;
                 font-size: 0.8rem;
             }
