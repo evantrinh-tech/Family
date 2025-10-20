@@ -1046,6 +1046,50 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
+
+        /* Envelope Open Button */
+        .envelope-open-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 50%, #ffa8c5 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 45px;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .envelope-open-btn:hover {
+            transform: translateX(-50%) translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .envelope-open-btn:active {
+            transform: translateX(-50%) translateY(0) scale(1.02);
+        }
+
+        .envelope-open-btn .btn-icon {
+            font-size: 1.1rem;
+            animation: heartPulse 2s ease-in-out infinite;
+        }
+
+        .envelope-open-btn .btn-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -1094,6 +1138,12 @@
                 </div>
                 <!-- Invisible overlay for full area clicking -->
                 <div class="envelope-overlay" onclick="openEnvelope()" ontouchstart="openEnvelope()"></div>
+                
+                <!-- Open Letter Button -->
+                <button class="envelope-open-btn" onclick="openEnvelope()" ontouchstart="openEnvelope()">
+                    <span class="btn-icon">💌</span>
+                    <span class="btn-text">Mở thư tình</span>
+                </button>
                 <div class="letter" id="letter">
                     <div class="stage-indicator" id="stageIndicator">Phần 1/5</div>
                     <div class="letter-content" id="letterContent">
@@ -1239,6 +1289,12 @@
             const flap = document.getElementById('envelopeFlap');
             const letter = document.getElementById('letter');
             const actionButtons = document.getElementById('actionButtons');
+            const envelopeOpenBtn = document.querySelector('.envelope-open-btn');
+            
+            // Hide the envelope open button
+            if (envelopeOpenBtn) {
+                envelopeOpenBtn.style.display = 'none';
+            }
             
             // Open envelope
             flap.classList.add('opened');
@@ -1356,6 +1412,7 @@
             const envelope = document.querySelector('.envelope');
             const flap = document.getElementById('envelopeFlap');
             const actionButtons = document.getElementById('actionButtons');
+            const envelopeOpenBtn = document.querySelector('.envelope-open-btn');
             
             // Reset all classes
             letter.classList.remove('visible', 'letter-closing');
@@ -1364,6 +1421,11 @@
             
             // Hide action buttons
             actionButtons.style.display = 'none';
+            
+            // Show the envelope open button
+            if (envelopeOpenBtn) {
+                envelopeOpenBtn.style.display = 'flex';
+            }
             
             // Reset stage
             currentStage = 0;
