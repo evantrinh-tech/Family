@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💌 Thư tình 20/10 - Love Letter</title>
+    <title>💌 Lời chúc 20/10 - Gửi bà ngoại, mẹ béo, các dì và mợ</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -457,6 +457,22 @@
             -ms-user-select: none;
         }
 
+        .sender-name {
+            position: absolute;
+            bottom: 70px;
+            right: 20px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 5;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            opacity: 0.9;
+        }
+
         /* Letter */
         .letter {
             position: absolute;
@@ -756,6 +772,11 @@
                 padding: 5px;
             }
             
+            .sender-name {
+                font-size: 0.8rem;
+                padding: 5px;
+            }
+            
             .letter.visible {
                 transform: translateY(0) scale(1.0);
             }
@@ -941,6 +962,70 @@
             font-weight: 500;
         }
 
+        /* Image Gallery Styles */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffe6f1, #ffc4de);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-image {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            transform: translateZ(10px);
+        }
+
+        .gallery-image:hover {
+            transform: translateZ(20px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-image:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Responsive gallery */
+        @media (max-width: 768px) {
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .gallery-image {
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 10px;
+            }
+            
+            .gallery-image {
+                height: 80px;
+            }
+        }
+
         /* Final View Styles */
         .final-view .container {
             opacity: 0;
@@ -1091,14 +1176,15 @@
     <!-- Main Container -->
     <div class="container">
         <div class="header">
-            <h1 class="title">💌 Thư tình 20/10</h1>
+            <h1 class="title">💌 Lời chúc 20/10</h1>
         </div>
         
         <div class="envelope-container">
             <div class="envelope" onclick="openEnvelope()" ontouchstart="openEnvelope()">
                 <div class="envelope-body" onclick="openEnvelope()" ontouchstart="openEnvelope()">
                     <div class="envelope-flap" id="envelopeFlap" onclick="openEnvelope()" ontouchstart="openEnvelope()"></div>
-                    <div class="recipient-name" id="recipientName" onclick="openEnvelope()" ontouchstart="openEnvelope()">💌 Gửi: Thu Phương</div>
+                    <div class="recipient-name" id="recipientName" onclick="openEnvelope()" ontouchstart="openEnvelope()">💌 Gửi: Bà ngoại, mẹ béo, các dì và mợ</div>
+                    <div class="sender-name" id="senderName" onclick="openEnvelope()" ontouchstart="openEnvelope()">📝 From: Xuân Đạt</div>
                     <div class="envelope-text" onclick="openEnvelope()" ontouchstart="openEnvelope()"></div>
                 </div>
                 <!-- Invisible overlay for full area clicking -->
@@ -1107,31 +1193,50 @@
                 <!-- Open Letter Button -->
                 <button class="envelope-open-btn" onclick="openEnvelope()" ontouchstart="openEnvelope()">
                     <span class="btn-icon">💌</span>
-                    <span class="btn-text">Mở thư tình</span>
+                    <span class="btn-text">Mở lời chúc</span>
                 </button>
                 <div class="letter" id="letter">
-                    <div class="stage-indicator" id="stageIndicator">Phần 1/5</div>
+                    <div class="stage-indicator" id="stageIndicator">Phần 1/6</div>
                     <div class="letter-content" id="letterContent">
                         <div class="letter-stage" id="stage1">
-                            <div class="letter-line">Gửi em – bông hoa rực rỡ nhất ngày 20/10 🌸</div>
+                            <div class="letter-line">Gửi bà ngoại, mẹ yêu, các dì và mợ thân thương 🌸</div>
                         </div>
                         <div class="letter-stage" id="stage2">
-                            <div class="letter-line">Chúc em luôn xinh đẹp, hạnh phúc và rực rỡ như chính nụ cười của em.</div>
+                            <div class="letter-line">Chúc những người phụ nữ tuyệt vời nhất của gia đình luôn rạng rỡ, xinh đẹp và tràn đầy yêu thương 💐</div>
                         </div>
                         <div class="letter-stage" id="stage3">
-                            <div class="letter-line">Cảm ơn em đã đến, làm cuộc đời anh hồng hơn một chút, ấm hơn rất nhiều.</div>
+                            <div class="letter-line">Cảm ơn vì đã luôn dành cho mọi người trong gia đình tất cả tình yêu, sự hi sinh và những điều tốt đẹp nhất ❤️</div>
                         </div>
                         <div class="letter-stage" id="stage4">
-                            <div class="letter-line">Mong những điều dịu dàng nhất luôn ở cạnh em – hôm nay và mãi về sau.</div>
+                            <div class="letter-line">Chúc mọi người thật nhiều sức khỏe, niềm vui và bình an – không chỉ hôm nay mà suốt cả cuộc đời 🌷</div>
                         </div>
                         <div class="letter-stage" id="stage5">
-                            <div class="letter-line">Yêu em 💞</div>
-                            <div class="letter-image-container">
-                                <div class="image-placeholder" onclick="uploadImage()" id="imagePlaceholder" style="display: none;">
-                                    📸
+                            <div class="letter-line">Chúc mừng Ngày Phụ nữ Việt Nam 20/10 💞</div>
+                        </div>
+                        <div class="letter-stage" id="stage6">
+                            <div class="letter-line">Những khoảnh khắc đẹp nhất 💕</div>
+                            <div class="image-gallery">
+                                <div class="gallery-image" id="galleryImage1">
+                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 1">
                                 </div>
-                                <div class="image-upload-text" id="imageUploadText" style="display: none;">Click để thêm ảnh</div>
-                                <img class="letter-image" id="letterImage" src="love-letter/123.jpg" alt="Hình ảnh tình yêu">
+                                <div class="gallery-image" id="galleryImage2">
+                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 2">
+                                </div>
+                                <div class="gallery-image" id="galleryImage3">
+                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 3">
+                                </div>
+                                <div class="gallery-image" id="galleryImage4">
+                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 4">
+                                </div>
+                                <div class="gallery-image" id="galleryImage5">
+                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 5">
+                                </div>
+                                <div class="gallery-image" id="galleryImage6">
+                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 6">
+                                </div>
+                                <div class="gallery-image" id="galleryImage7">
+                                    <img src="love-letter/123.jpg" alt="Khoảnh khắc 7">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1141,15 +1246,15 @@
         
         <div class="action-buttons" id="actionButtons" style="display: none;">
             <button class="action-btn" onclick="replayLetter()">🔄 Phát lại lời chúc</button>
-            <button class="action-btn" onclick="editLetter()">✏️ Sửa nội dung</button>
+            <button class="action-btn" onclick="editLetter()">✏️ Sửa lời chúc</button>
         </div>
     </div>
     
     <!-- Modals -->
     <div class="modal" id="editModal">
         <div class="modal-content">
-            <h3>✏️ Sửa nội dung thư</h3>
-            <textarea id="letterEdit" rows="8" placeholder="Nhập nội dung thư..."></textarea>
+            <h3>✏️ Sửa lời chúc</h3>
+            <textarea id="letterEdit" rows="8" placeholder="Nhập lời chúc..."></textarea>
             <div class="modal-buttons">
                 <button class="modal-btn primary" onclick="saveLetter()">Lưu</button>
                 <button class="modal-btn secondary" onclick="closeEditModal()">Hủy</button>
@@ -1162,8 +1267,8 @@
     
     <!-- Final Message -->
     <div class="final-message" id="finalMessage">
-        <h1>Thu Phương</h1>
-        <p>Chúc em ngày 20/10 thật hạnh phúc!</p>
+        <h1>Bà ngoại, mẹ béo, các dì và mợ</h1>
+        <p>Chúc các cô ngày 20/10 thật hạnh phúc!</p>
         <div class="heart">💕</div>
     </div>
     
@@ -1180,24 +1285,28 @@
         let musicBtn = document.getElementById('musicBtn');
         let musicVisualizer = document.getElementById('musicVisualizer');
         
-        // Default letter content - divided into 5 stages
+        // Default letter content - divided into 6 stages
         const defaultLetterStages = [
-            [
-                "Gửi em – bông hoa rực rỡ nhất ngày 20/10 🌸"
-            ],
-            [
-                "Chúc em luôn xinh đẹp, hạnh phúc và rực rỡ như chính nụ cười của em."
-            ],
-            [
-                "Cảm ơn em đã đến, làm cuộc đời anh hồng hơn một chút, ấm hơn rất nhiều."
-            ],
-            [
-                "Mong những điều dịu dàng nhất luôn ở cạnh em – hôm nay và mãi về sau."
-            ],
-            [
-                "Yêu em 💞"
-            ]
-        ];
+    [
+        "Gửi bà ngoại, mẹ yêu, các dì và mợ thân thương 🌸"
+    ],
+    [
+        "Chúc những người phụ nữ tuyệt vời nhất của gia đình luôn rạng rỡ, xinh đẹp và tràn đầy yêu thương 💐"
+    ],
+    [
+        "Cảm ơn vì đã luôn dành cho mọi người trong tất cả tình yêu, sự hi sinh và những điều tốt đẹp nhất ❤️"
+    ],
+    [
+        "Chúc mọi người thật nhiều sức khỏe, niềm vui và bình an – không chỉ hôm nay mà suốt cả cuộc đời 🌷"
+    ],
+    [
+        "Con yêu và trân trọng tất cả. Chúc mừng Ngày Phụ nữ Việt Nam 20/10 💞"
+    ],
+    [
+        "Những khoảnh khắc đẹp nhất 💕"
+    ]
+];
+
         
         let currentLetterStages = JSON.parse(JSON.stringify(defaultLetterStages));
         let currentStage = 0;
@@ -1218,13 +1327,15 @@
         });
         
         function initializeApp() {
-            // Set default name to Thu Phương
+            // Set default name to family women
             const savedName = localStorage.getItem('recipientName');
             if (!savedName) {
-                localStorage.setItem('recipientName', 'Thu Phương');
-                updateRecipientName('Thu Phương');
+                localStorage.setItem('recipientName', 'Bà ngoại, mẹ béo, các dì và mợ');
+                updateRecipientName('Bà ngoại, mẹ béo, các dì và mợ');
             } else {
-                updateRecipientName(savedName);
+                // Always update to new name to override old cached names
+                localStorage.setItem('recipientName', 'Bà ngoại, mẹ béo, các dì và mợ');
+                updateRecipientName('Bà ngoại, mẹ béo, các dì và mợ');
             }
             
             // Load saved letter content
@@ -1239,6 +1350,10 @@
         
         function updateRecipientName(name) {
             document.getElementById('recipientName').textContent = `💌 Gửi: ${name}`;
+        }
+        
+        function updateSenderName(name) {
+            document.getElementById('senderName').textContent = `📝 From: ${name}`;
         }
         
         
@@ -1307,10 +1422,10 @@
                 if (currentStage < totalStages - 1) {
                     fadeOutCurrentStage();
                 } else {
-                    // Last stage - start final view transition after 3 seconds
+                    // Last stage - start final view transition after 5 seconds (more time for gallery)
                     setTimeout(() => {
                         startFinalViewTransition();
-                    }, 3000);
+                    }, 5000);
                 }
             }, 2500);
         }
@@ -1458,13 +1573,39 @@
             const letterContent = document.getElementById('letterContent');
             let html = '';
             
-            // Always create exactly 5 stages
-            for (let i = 0; i < 5; i++) {
+            // Always create exactly 6 stages
+            for (let i = 0; i < 6; i++) {
                 html += `<div class="letter-stage" id="stage${i + 1}">`;
                 if (currentLetterStages[i]) {
                     currentLetterStages[i].forEach(line => {
                         html += `<div class="letter-line">${line}</div>`;
                     });
+                }
+                // Add gallery for stage 6
+                if (i === 5) {
+                    html += `<div class="image-gallery">
+                        <div class="gallery-image" id="galleryImage1">
+                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 1">
+                        </div>
+                        <div class="gallery-image" id="galleryImage2">
+                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 2">
+                        </div>
+                        <div class="gallery-image" id="galleryImage3">
+                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 3">
+                        </div>
+                        <div class="gallery-image" id="galleryImage4">
+                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 4">
+                        </div>
+                        <div class="gallery-image" id="galleryImage5">
+                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 5">
+                        </div>
+                        <div class="gallery-image" id="galleryImage6">
+                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 6">
+                        </div>
+                        <div class="gallery-image" id="galleryImage7">
+                            <img src="love-letter/123.jpg" alt="Khoảnh khắc 7">
+                        </div>
+                    </div>`;
                 }
                 html += '</div>';
             }
